@@ -28,7 +28,7 @@
 
     function barcode() {
         currentID = generateID()
-        JsBarcode(document.getElementById("barcode"), generateID(), {
+        JsBarcode(document.getElementById("barcode"), currentID, {
             format: 'CODE39',
             displayValue: false
         });
