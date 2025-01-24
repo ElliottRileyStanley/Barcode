@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="lib/JsBarcode.all.min.js"></script>
+    <title>Code 39</title>
+</head>
+<body>
+    <h1>test</h1>
+    <svg id="barcode"></svg>
+    <br>
+    <input id="textbox" type="text">
+    <button onclick="check()">Check answer</button>
+</body>
+</html>
+
+<script>
+    var currentID;
+
+    function generateID() {
+        ID = ["28", "27", "26", "25"][Math.floor(Math.random() * 4)]
+        ID = ID + "0000"
+        ID = ID + ("000" + Math.floor(Math.random() * 1000)).slice(-3)
+        return ID
+    }
+
+    function barcode() {
+        currentID = generateID()
+        JsBarcode(document.getElementById("barcode"), generateID(), {
+            format: 'CODE39',
+            displayValue: false
+        });
+    }
+
+    function check() {
+        if (document.getElementById("textbox").value == currentID) {
+            console.log("correct")
+            barcode()
+        } else {
+            console.log("incorrect. correct value is - " + currentID)
+        }
+    }
+
+    window.onload = barcode()
+</script>
