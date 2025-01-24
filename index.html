@@ -7,11 +7,12 @@
     <title>Code 39</title>
 </head>
 <body>
-    <h1>test</h1>
+    <h1>Code 39 barcode test</h1>
     <svg id="barcode"></svg>
     <br>
     <input id="textbox" type="text">
     <button onclick="check()">Check answer</button>
+    <button id="reveal" onclick="reveal()" style="visibility: hidden;">Reveal answer</button>
 </body>
 </html>
 
@@ -35,11 +36,16 @@
 
     function check() {
         if (document.getElementById("textbox").value == currentID) {
-            console.log("correct")
             barcode()
+            document.getElementById("reveal").style.visibility = "hidden"
+            document.getElementById("textbox").value = ""
         } else {
-            console.log("incorrect. correct value is - " + currentID)
+            document.getElementById("reveal").style.visibility = "visible"
         }
+    }
+
+    function reveal() {
+        document.getElementById("textbox").value = currentID
     }
 
     window.onload = barcode()
